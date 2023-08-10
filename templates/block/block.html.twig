@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a block.
+ * Default theme implementation to display a block.
  *
  * Available variables:
  * - plugin_id: The ID of the block implementation.
@@ -24,16 +24,11 @@
  *   displayed after the main title tag that appears in the template.
  *
  * @see template_preprocess_block()
+ *
+ * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
+<div{{ attributes }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes }}>{{ label }}</h2>
