@@ -42,4 +42,4 @@ regions:
   content_below: Content Below
   footer_top: Footer Top
   footer_bottom: Footer Bottom
-core_version_requirement: ^9
+core_version_requirement: ^10
