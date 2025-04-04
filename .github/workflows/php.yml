@@ -2,38 +2,89 @@ name: PHP Composer
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     # - name: Run test suite
     #   run: composer run-script test
+  build_css:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source Git branch
+        uses: actions/checkout@v2
+        with:
+          ref: src-pages
+          fetch-depth: 10
+          submodules: true
+
+      - name: Make destination directory for compiled CSS
+        run: mkdir -vp /tmp/repo-name/assets/css
+
+      - name: Compile CSS from SCSS files
+        uses: gha-utilities/sass-build@v0.6.0
+        with:
+          source: _scss/main.scss
+          destination: /tmp/repo-name/assets/css/main.css
+
+      - name: Checkout destination Git branch
+        uses: actions/checkout@v2
+        with:
+          ref: pr-pages
+          fetch-depth: 1
+
+      - name: Move compiled CSS to path within pr-pages branch
+        run: mv /tmp/repo-name/assets/css assets/
+
+      - name: Add and Commit changes to pr-pages branch
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
+          git add assets/css/*
+          git commit -m 'Updates compiled CSS files'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: pr-pages
+
+      - name: Initialize Pull Request
+        uses: gha-utilities/init-pull-request@v0.0.4
+        with:
+          pull_request_token: ${{ secrets.GITHUB_TOKEN }}
+          head: pr-pages
+          base: gh-pages
+          title: "Updates site files from latest Actions build"
+          body: >
+            Perhaps a multi-line description
+            about latest features and such.
