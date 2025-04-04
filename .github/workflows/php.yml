@@ -3,8 +3,7 @@ name: PHP Composer
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
+
 
 permissions:
   contents: read
@@ -43,7 +42,7 @@ jobs:
       - name: Checkout source Git branch
         uses: actions/checkout@v2
         with:
-          ref: src-pages
+          ref: main
           fetch-depth: 10
           submodules: true
 
@@ -59,13 +58,13 @@ jobs:
       - name: Checkout destination Git branch
         uses: actions/checkout@v2
         with:
-          ref: pr-pages
+          ref: main
           fetch-depth: 1
 
-      - name: Move compiled CSS to path within pr-pages branch
+      - name: Move compiled CSS to path within main branch
         run: mv /tmp/repo-name/assets/css assets/
 
-      - name: Add and Commit changes to pr-pages branch
+      - name: Add and Commit changes to main branch
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
@@ -76,13 +75,13 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: pr-pages
+          branch: main
 
       - name: Initialize Pull Request
         uses: gha-utilities/init-pull-request@v0.0.4
         with:
           pull_request_token: ${{ secrets.GITHUB_TOKEN }}
-          head: pr-pages
+          head: main
           base: gh-pages
           title: "Updates site files from latest Actions build"
           body: >
