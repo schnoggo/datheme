@@ -1,4 +1,7 @@
 {
+    "name": "datheme",
+    "description": "A generic description for the datheme project.",
+    "license": "proprietary",
     "require": {
         "phpunit/phpunit": "^12.1"
     }
