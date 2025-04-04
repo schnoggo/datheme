@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Build test</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  
+  <h1>Build test</h1>
+  <p>This is a test page to check if the build process works correctly.</p>
+  <p>Current date and time: <span id="datetime"></span></p>
+
+  <script>
+    document.getElementById('datetime').textContent = new Date().toLocaleString();
+  </script>
 </body>
 </html>

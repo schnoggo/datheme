@@ -1,0 +1,30 @@
+/* Clean typography */
+body {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-base-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap:balance;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: 1.5;
+}
+h1 {
+  font-size: calc(var(--heading-base-size) * 2);
+}
+h2 {
+  font-size: calc(var(--base-heading-size) * 1.5);
+}
+h3 {
+  font-size: calc(var(--base-heading-size) * 1.25);
+}
+h4 {
+  font-size: calc(var(--base-heading-size) * 1);
+}
+p, li, figcaption, figcaption, blockquote {
+  max-width: var(--readable-width);
+  line-height: 1.25;
+
+}

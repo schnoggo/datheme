@@ -1,17 +1,4 @@
 @use "./variables.scss";
 @use "./reset.scss";
+@use "./typography.scss";
 
-/* Clean typography */
-body {
-  font-family: var(--body-font-family);
-  font-weight: var(--body-font-weight);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  text-wrap:balance;
-  font-family: var(--heading-font-family);
-  font-weight: var(--heading-font-weight);
-}
-p, li, figcaption, figcaption, blockquote {
-  max-width: var(--readable-width);
-}
