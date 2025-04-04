@@ -26,5 +26,5 @@ h4 {
 p, li, figcaption, figcaption, blockquote {
   max-width: var(--readable-width);
   line-height: 1.25;
-
+  text-wrap: pretty;
 }

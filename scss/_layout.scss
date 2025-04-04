@@ -1,0 +1,5 @@
+header, footer, main, aside, section article {
+  container-type: inline-size;
+  max-width: calc( min(calc(100dvw - var(--page-padding) * 2), var(--pillar-width)));
+  margin: 0 auto;
+}
