@@ -43,6 +43,7 @@ jobs:
       - name: Checkout source Git branch
         uses: actions/checkout@v2
         with:
+          ref: src-pages
           fetch-depth: 10
           submodules: true
 
