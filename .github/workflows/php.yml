@@ -40,10 +40,8 @@ jobs:
 
     steps:
       - name: Checkout source Git branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 10
           submodules: true
 
       - name: Make destination directory for compiled CSS
@@ -56,15 +54,15 @@ jobs:
           destination: /tmp/repo-name/assets/css/style.css
 
       - name: Checkout destination Git branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 1
+          ref: compiled-css
 
-      - name: Move compiled CSS to path within main branch
-        run: mv /tmp/repo-name/assets/css assets/
 
-      - name: Add and Commit changes to main branch
+      - name: Move compiled CSS to path within compiled-css branch
+        run: mv /tmp/repo-name/assets/css/* css/.
+
+      - name: Add and Commit changes to compiled-css branch
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
@@ -75,15 +73,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: compiled-css
 
-      - name: Initialize Pull Request
-        uses: gha-utilities/init-pull-request@v0.0.4
-        with:
-          pull_request_token: ${{ secrets.GITHUB_TOKEN }}
-          head: main
-          base: gh-pages
-          title: "Updates site files from latest Actions build"
-          body: >
-            Perhaps a multi-line description
-            about latest features and such.
