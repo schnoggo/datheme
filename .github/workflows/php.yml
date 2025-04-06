@@ -51,7 +51,7 @@ jobs:
         uses: gha-utilities/sass-build@v0.6.0
         with:
           source: scss/style.scss
-          destination: "$RUNNER_TEMP"/css/style.css
+          destination: $RUNNER_TEMP/css/style.css
 
       - name: Checkout destination Git branch
         uses: actions/checkout@v4
