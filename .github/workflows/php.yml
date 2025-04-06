@@ -45,13 +45,13 @@ jobs:
           submodules: true
 
       - name: Make destination directory for compiled CSS
-        run: mkdir -vp /tmp/repo-name/assets/css
+        run: mkdir -vp /home/runner/work/_temp/assets/css
 
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.6.0
         with:
           source: scss/style.scss
-          destination: /tmp/repo-name/assets/css/style.css
+          destination: $RUNNER_TEMP/css/style.css
 
       - name: Checkout destination Git branch
         uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
 
 
       - name: Move compiled CSS to path within compiled-css branch
-        run: mv /tmp/repo-name/assets/css/* css/.
+        run: mv $RUNNER_TEMP/css/* css/.
 
       - name: Add and Commit changes to compiled-css branch
         run: |
