@@ -58,15 +58,17 @@ jobs:
         with:
           ref: compiled-css
 
+      - name: Create destingation directory for compiled CSS
+        run: mkdir -vp $GITHUB_WORKSPACE/css
 
       - name: Move compiled CSS to path within compiled-css branch
-        run: mv /home/runner/work/_temp/css/* css/.
+        run: mv /home/runner/work/_temp/css/* $GITHUB_WORKSPACE/css/.
 
       - name: Add and Commit changes to compiled-css branch
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add assets/css/*
+          git add css/*
           git commit -m 'Updates compiled CSS files'
 
       - name: Push changes
