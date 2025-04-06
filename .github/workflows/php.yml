@@ -51,7 +51,7 @@ jobs:
         uses: gha-utilities/sass-build@v0.6.0
         with:
           source: scss/style.scss
-          destination: $RUNNER_TEMP/css/style.css
+          destination: /home/runner/work/_temp/css/style.css
 
       - name: Checkout destination Git branch
         uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
 
 
       - name: Move compiled CSS to path within compiled-css branch
-        run: mv $RUNNER_TEMP/css/* css/.
+        run: mv /home/runner/work/_temp/css/* css/.
 
       - name: Add and Commit changes to compiled-css branch
         run: |
