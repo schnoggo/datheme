@@ -14,7 +14,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
+      - name: confirm environment
+        run: composer check-platform-reqs
+        
       - name: Validate composer.json and composer.lock
         run: composer validate --no-check-all
 
