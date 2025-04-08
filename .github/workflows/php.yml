@@ -63,5 +63,9 @@ jobs:
 
       - name: Push changes
         uses: ad-m/github-push-action@master
-
-
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+          directory: css
+          commit_message: "Update compiled CSS files"
