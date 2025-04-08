@@ -41,12 +41,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set git user name
-        run: git config --global user.name "${{ secrets.GH_NAME }}"
-        
-      - name: Set git user email
-        run: git config --global user.email "${{ secrets.GH_EMAIL }}"
-
       - name: Checkout source Git branch
         uses: actions/checkout@v4
         with:
@@ -55,23 +49,19 @@ jobs:
       - name: Create destination directory for compiled CSS
         run: mkdir -vp $GITHUB_WORKSPACE/css
 
-
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.6.0
         with:
           source: scss/style.scss
           destination: css/style.css
 
-      - name: Add and Commit changes to compiled-css branch
-        run: |
-          git add css/*
-          git commit -m 'Updates compiled CSS files'
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Add and Commit compiled css
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GH_TOK }}
-          branch: ${{ github.ref }}
-          force: true
-          directory: css
-          commit_message: "Update compiled CSS files"
+          author_name: ${{ secrets.GH_NAME }}
+          author_email: ${{ secrets.GH_EMAIL }}
+          add: 'css/style.css'
+          message: 'Update compiled CSS files'
+
+
