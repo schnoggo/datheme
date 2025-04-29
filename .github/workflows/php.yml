@@ -54,9 +54,8 @@ jobs:
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.6.0
         with:
-          source: $THEME_PATH/scss/style.scss
-          destination: $THEME_PATH/css/style.css
-
+          source: ${{ env.THEME_PATH }}/scss/style.scss
+          destination: ${{ env.THEME_PATH }}/css/style.css
 
       - name: Add and Commit compiled css
         uses: EndBug/add-and-commit@v9
