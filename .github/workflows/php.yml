@@ -63,6 +63,7 @@ jobs:
           author_name: ${{ secrets.GH_NAME }}
           author_email: ${{ secrets.GH_EMAIL }}
           add: 'css/style.css'
+          tag_push: '--force'
           message: 'Update compiled CSS files'
 
 
