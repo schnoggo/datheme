@@ -28,3 +28,14 @@ p, li, figcaption, figcaption, blockquote {
   line-height: 1.25;
   text-wrap: pretty;
 }
+
+code {
+  font-family: var(--code-font-family);
+  font-weight: var(--code-font-weight);
+  font-size: var(--code-base-size);
+  padding: .5rem;
+  outline: 1px solid gray;
+  display: block;
+  margin-block: .5rem;
+  box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.4);
+}
