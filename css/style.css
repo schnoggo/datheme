@@ -1,0 +1,128 @@
+:root {
+  /* Components */
+  --card-radius: .5rem;
+  --card-padding: 1rem;
+  /* Layout */
+  --pillar-width: 1200px;
+  --page-padding: 1rem;
+  /* Typography */
+  --readable-width: 55ch;
+  --body-font-family: Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans", source-sans-pro, sans-serif;
+  --body-font-weight: 400;
+  --heading-font-family: Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small", serif;
+  --heading-font-weight: 400;
+  --body-base-size: 1rem;
+  --heading-base-size: 1.5rem;
+  --code-font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --code-font-weight: normal;
+  --code-base-size: 1rem;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Clean typography */
+body {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  font-size: var(--body-base-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: calc(var(--heading-base-size) * 2);
+}
+
+h2 {
+  font-size: calc(var(--base-heading-size) * 1.5);
+}
+
+h3 {
+  font-size: calc(var(--base-heading-size) * 1.25);
+}
+
+h4 {
+  font-size: calc(var(--base-heading-size) * 1);
+}
+
+p, li, figcaption, figcaption, blockquote {
+  max-width: var(--readable-width);
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+code {
+  font-family: var(--code-font-family);
+  font-weight: var(--code-font-weight);
+  font-size: var(--code-base-size);
+  padding: 0.5rem;
+  outline: 1px solid gray;
+  display: block;
+  margin-block: 0.5rem;
+  box-shadow: 3px 3px 6px 4px rgba(0, 0, 0, 0.4);
+}
+
+header, footer, main, aside, section article {
+  container-type: inline-size;
+  max-width: min(100dvw - var(--page-padding) * 2, var(--pillar-width));
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=style.css.map */
