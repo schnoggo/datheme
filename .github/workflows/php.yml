@@ -39,6 +39,8 @@ jobs:
     #   run: composer run-script test
   build_css:
     runs-on: ubuntu-latest
+    env:
+      THEME_PATH: ${{ github.workspace }}
 
     steps:
       - name: Checkout source Git branch
@@ -47,14 +49,13 @@ jobs:
           submodules: true
 
       - name: Create destination directory for compiled CSS
-        run: mkdir -vp $GITHUB_WORKSPACE/css
+        run: mkdir -p $THEME_PATH/css
 
       - name: Compile CSS from SCSS files
         uses: gha-utilities/sass-build@v0.6.0
         with:
-          source: scss/style.scss
-          destination: css/style.css
-
+          source: ${{ env.THEME_PATH }}/scss/style.scss
+          destination: ${{ env.THEME_PATH }}/css/style.css
 
       - name: Add and Commit compiled css
         uses: EndBug/add-and-commit@v9

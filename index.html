@@ -20,6 +20,32 @@
       <li>Item 3</li>
     </ul>
     <p>Check the console for any errors.</p>
+
+  </section>
+  <section>
+    <code>
+      # Create the file (if it doesn't exist)
+touch .git/hooks/post-checkout
+touch .git/hooks/post-merge
+chmod +x .git/hooks/post-checkout
+chmod +x .git/hooks/post-merge
+</code>
+.git/hooks/post-checkout:
+<code>
+  #!/bin/bash
+echo "Rebuilding CSS after checkout..."
+# Your SASS/SCSS compile command here, for example:
+npm run build-css
+# Or if you use a direct SASS command:
+# sass scss/main.scss css/main.css --style compressed
+</code>
+.git/hooks/post-merge:
+<code>
+  #!/bin/bash
+echo "Rebuilding CSS after merge..."
+# Your SASS/SCSS compile command here
+npm run build-css
+
   </section>
   </main>
   <script>
