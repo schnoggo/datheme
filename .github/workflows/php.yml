@@ -2,7 +2,7 @@ name: PHP Composer
 
 on:
   push:
-    branches: ["staging"]
+    branches: ["develop"]
 
 
 permissions:
@@ -43,9 +43,10 @@ jobs:
       THEME_PATH: ${{ github.workspace }}
 
     steps:
-      - name: Checkout source Git branch
+      - name: Checkout deploy branch
         uses: actions/checkout@v4
         with:
+          ref: deploy-stage
           submodules: true
 
       - name: Create destination directory for compiled CSS
